@@ -7,6 +7,7 @@ gem 'rails', '4.2.1'
 gem 'devise', '3.4.1'
 gem 'haml-rails', '0.9.0'
 gem 'pg', '0.18.1'
+gem 'bootstrap-sass', '3.3.4.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
