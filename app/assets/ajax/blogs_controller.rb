@@ -1,3 +1,0 @@
-class BlogsController < ApplicationController
-
-end
