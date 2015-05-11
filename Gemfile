@@ -2,11 +2,17 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails',          '4.2.1'
 
-gem 'devise', '3.4.1'
-gem 'haml-rails', '0.9.0'
-gem 'pg', '0.18.1'
+gem 'devise',         '3.4.1'
+gem 'haml-rails',     '0.9.0'
+gem 'pg',             '0.18.1'
+gem 'will_paginate',  '3.0.7'
+gem 'carrierwave',    '0.8.0'
+gem 'mini_magick',    '3.7.0'
+gem 'fog'
+gem 'rmagick',        '2.13.2'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

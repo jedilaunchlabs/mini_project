@@ -1,0 +1,39 @@
+%br/
+= button_to 'Create Blog', new_blog_path, :method => "get"
+
+- unless @blogs.empty?
+  %h2 Blogs
+
+  %table
+    %thead
+      %tr
+        %th Title
+        %th Caption
+        %th Description
+        %th User
+        %th{:colspan => "4"}
+    %tbody
+      - @blogs.each do |blog|
+        %tr
+          %td= blog.title
+          %td= blog.caption
+          %td= blog.description
+          %td= blog.user.email
+
+          - if blog.is_draft?
+            %td= button_to 'Edit', edit_blog_path(blog), :method => "get", :class => "edit_button"
+            %td
+              - if blog.is_draft?
+                %button{id: "#{blog.id}", :class => "live_button"} Live
+
+          - unless blog.is_draft?
+            %td
+              - if blog.is_archived?
+                %button{id: "#{blog.id}", :class => "archive_button"} Archived
+              - else
+                %button{id: "#{blog.id}", :class => "archive_button"} Archive
+  %br/        
+  = will_paginate
+- else
+  %p Blog list is empty.
+
