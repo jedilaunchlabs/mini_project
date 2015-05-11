@@ -1,14 +1,15 @@
 class BlogsController < ApplicationController
 
 	before_action :set_blog, only: [:show, :edit, :update, :destroy]
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, except: [:show]
 
 	def index
-		@blogs = current_user.blogs.paginate(:page => params[:page], :per_page => 5)
+		@blogs = current_user.blogs.order("created_at desc").paginate(:page => params[:page], :per_page => 5)
 	end
 
 
 	def show
+		set_blog
 	end
 
 
@@ -46,14 +47,6 @@ class BlogsController < ApplicationController
 				format.html { redirect_to :back }
 				format.json { render json: @blog.errors, status: :unprocessable_entity }
 			end
-	    end
-	end
-
-	def destroy
-		@blog.destroy
-	    respond_to do |format|
-	      format.html { redirect_to blog_url, notice: 'Blog was successfully destroyed.' }
-	      format.json { head :no_content }
 	    end
 	end
 

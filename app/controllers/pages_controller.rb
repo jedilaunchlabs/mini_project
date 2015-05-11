@@ -1,8 +1,7 @@
 class PagesController < ApplicationController
 
 	def home
-		# @blogs = current_user.blogs.paginate(:page => params[:page], :per_page => 5)
-		# redirect_to blogs_path
+		@blogs = Blog.where(:is_draft => false, :is_archived => false).order("created_at desc").paginate(:page => params[:page], :per_page => 5)
 	end
 
 end
