@@ -14,8 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require select2
 
 $(document).ready(function(){
+
   $(".archive_button").click(function(){
     var blogID = $(this).attr("id");
     $.ajax({      
@@ -66,4 +68,9 @@ $(document).ready(function(){
       }
     });
   });
+
+  $(".js-example-basic-multiple").select2({
+    placeholder: "Choose a category"
+  });
+
 });

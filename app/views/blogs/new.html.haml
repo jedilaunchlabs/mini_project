@@ -16,10 +16,10 @@
   .field 
     = f.text_area :description, placeholder: "Description"
   .field
-    %select.js-example-basic-single
-      %option{:value => "MV"} Movie
-      %option{:value => "FD"} Food  
-      %option{:value => "PT"} Photography      
+    %select.js-example-basic-multiple{:multiple => "multiple"}
+      %option{:value => "PN"} Paintings
+      %option{:value => "PT"} Photography
+      %option{:value => "FD"} Food      
 
   .actions 
     = f.submit "Create"
