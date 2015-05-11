@@ -1,8 +1,7 @@
 class PagesController < ApplicationController
 
 	def home
-		@blogs = Blog.order("created_at desc").paginate(:page => params[:page], :per_page => 5)
-    @blogs = @blogs.where(:is_draft => false)
+		@blogs = Blog.where(:is_draft => false, :is_archived => false).order("created_at desc").paginate(:page => params[:page], :per_page => 5)
 	end
 
 end
