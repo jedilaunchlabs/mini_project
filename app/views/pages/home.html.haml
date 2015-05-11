@@ -16,12 +16,11 @@
         %th{:colspan => "4"}
     %tbody
       - @blogs.each do |blog|
-        - unless blog.is_draft?
-          %tr
-            %td= blog.title
-            %td= blog.caption
-            %td= blog.description
-            %td= blog.user.email
+        %tr
+          %td= blog.title
+          %td= blog.caption
+          %td= blog.description
+          %td= blog.user.email
   %br/        
   = will_paginate @blogs
 - else
