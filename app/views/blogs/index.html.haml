@@ -1,0 +1,25 @@
+%h2 Blogs
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Caption
+      %th Description
+      %th User
+      %th{:colspan => "4"}
+  %tbody
+    - @blogs.each do |blog|
+      %tr
+        %td= blog.title
+        %td= blog.caption
+        %td= blog.description
+        %td= blog.user.email
+        %td= button_to 'Edit', edit_blog_path(blog), :method => "get"
+        / %td= button_to 'Live', blog, :method => "update", :is_draft => true
+        / %td= button_to 'Delete', blog, :method => "delete", data: { confirm: 'Are you sure?' }
+        / %td= button_to 'Archive', blog, :method => "delete"
+%br/        
+= will_paginate
+%br/
+= link_to 'New Blog', new_blog_path

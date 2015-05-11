@@ -1,0 +1,25 @@
+- if user_signed_in?
+  - if @blog.is_draft?
+
+    %h1 Edit Blog
+
+    = form_for (@blog) do |f|
+      - if @blog.errors.any?
+        #error_explanation
+          %h3
+            = pluralize(@blog.errors.count, "error")
+            prohibited this blog from being saved:
+          %ul
+            - @blog.errors.full_messages.each do |message|
+              %li= message
+      .field 
+        = f.text_field :title, placeholder: "Title"
+      .field 
+        = f.text_field :caption, placeholder: "Content"
+      .field 
+        = f.text_field :description, placeholder: "Description"
+      .actions 
+        = f.submit "Update"
+      
+      %br
+      = link_to "Back", blogs_path
