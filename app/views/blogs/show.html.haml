@@ -1,4 +1,16 @@
-%h2 Blogs
+%h2 Blog
 
-- @blog.each do |f|
-  = @blog.title
+%table
+  %thead
+    %tr
+      %th Title
+      %th Caption
+      %th Description
+      %th User
+      %th{:colspan => "4"}
+  %tbody
+    %tr
+      %td= @blog.title
+      %td= @blog.caption
+      %td= @blog.description
+      %td= @blog.user.email
