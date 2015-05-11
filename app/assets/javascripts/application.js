@@ -14,3 +14,56 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  $(".archive_button").click(function(){
+    var blogID = $(this).attr("id");
+    $.ajax({      
+      url:"/ajax/blogs/" + blogID + "/archive",
+      type: "PUT",
+      dataType:'json',
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        
+      },
+      error:function(data){ 
+          
+      },
+      success:function(data){
+        if(data.is_archived == true){
+          $("#"+blogID).html("Archived");
+        }
+        else{
+          $("#"+blogID).html("Archive");
+        }
+      }
+    });
+  });
+
+
+  $(".live_button").click(function(){
+    var blogID = $(this).attr("id");
+    $.ajax({      
+      url:"/ajax/blogs/" + blogID + "/live",
+      type: "PUT",
+      dataType:'json',
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        
+      },
+      error:function(data){ 
+          
+      },
+      success:function(data){
+        if(data.is_draft == true){
+          $("#"+blogID).html("Live");
+          $(".archive_button").show();
+        }
+        else{
+          $("#"+blogID).hide();
+          $(".edit_button").hide();
+        }
+      }
+    });
+  });
+});

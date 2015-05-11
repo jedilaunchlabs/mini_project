@@ -19,14 +19,19 @@
           %td= blog.caption
           %td= blog.description
           %td= blog.user.email
-          %td= button_to 'Delete', blog, :method => "delete", data: { confirm: 'Are you sure?' }
 
           - if blog.is_draft?
-            %td= button_to 'Edit', edit_blog_path(blog), :method => "get"
-            %td= button_to 'Live'
+            %td= button_to 'Edit', edit_blog_path(blog), :method => "get", :class => "edit_button"
+            %td
+              - if blog.is_draft?
+                %button{id: "#{blog.id}", :class => "live_button"} Live
 
           - unless blog.is_draft?
-            %td= button_to 'Archive'
+            %td
+              - if blog.is_archived?
+                %button{id: "#{blog.id}", :class => "archive_button"} Archived
+              - else
+                %button{id: "#{blog.id}", :class => "archive_button"} Archive
   %br/        
   = will_paginate
 - else
