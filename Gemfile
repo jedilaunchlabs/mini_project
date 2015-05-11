@@ -9,9 +9,6 @@ gem 'haml-rails', '0.9.0'
 gem 'pg', '0.18.1'
 gem 'will_paginate', '3.0.7'
 
-
-gem 'bootstrap-sass', '3.3.4.1'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
