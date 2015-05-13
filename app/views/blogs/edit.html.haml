@@ -11,6 +11,16 @@
         %ul
           - @blog.errors.full_messages.each do |message|
             %li= message
+
+
+    .hfield
+      = f.text_area :image, :id => "image_base64_holder", style: "#{'display:none'}"
+    .picture
+      = f.file_field :image, :id => "image_upload", accept: 'image/jpeg,image/gif,image/png'
+    .image_holder{:style => 'height:200px;width:200px;'}
+
+    .picture
+      = image_tag @blog.image_url(:thumb).to_s
     .field 
       = f.text_field :title, placeholder: "Title"
     .field 

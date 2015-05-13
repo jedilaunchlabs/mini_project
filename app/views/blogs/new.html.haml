@@ -9,6 +9,13 @@
       %ul
         - @blog.errors.full_messages.each do |message|
           %li= message
+
+  .hfield
+    = f.text_area :image, :id => "image_base64_holder", style: "#{'display:none'}"
+  .picture
+    = f.file_field :image, :id => "image_upload", accept: 'image/jpeg,image/gif,image/png'
+  .image_holder{:style => 'height:400px;width:400px;'}
+
   .field 
     = f.text_field :title, placeholder: "Title"
   .field 
@@ -18,6 +25,6 @@
   .field
     %select.js-example-basic-multiple{:name => "categories[]", :multiple => "multiple"}
       - @categories.each do |category|
-        %option{:value => "#{category.id}"}= category.name      
+        %option{:value => "#{category.id}"}= category.name
   .actions 
     = f.submit "Create"
