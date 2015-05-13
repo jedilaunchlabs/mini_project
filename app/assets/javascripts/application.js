@@ -59,18 +59,21 @@ $(document).ready(function(){
       success:function(data){
         if(data.is_draft == true){
           $("#"+blogID).html("Live");
-          $(".archive_button").show();
         }
         else{
-          $("#"+blogID).hide();
-          $(".edit_button").hide();
+          $("#"+blogID).html("Archive");
+          $(".archive_button").show();
+
+          // $("#"+blogID, ".edit_button").hide();
+
         }
       }
     });
   });
 
   $(".js-example-basic-multiple").select2({
-    placeholder: "Choose a category"
+    placeholder: "Choose category",
+    allowClear: true
   });
 
 });
