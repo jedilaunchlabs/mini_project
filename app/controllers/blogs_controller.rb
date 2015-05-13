@@ -31,8 +31,10 @@ class BlogsController < ApplicationController
     respond_to do |format|
       if @blog.save
 
-        params[:categories].each do |category|
-          @blogs_category = BlogsCategory.create({ blog_id: @blog.id, category_id: category.to_i })
+        if params[:categories].present?
+          params[:categories].each do |category|
+            @blogs_category = BlogsCategory.create({ blog_id: @blog.id, category_id: category.to_i })
+          end
         end
 
         format.html { redirect_to blogs_path, notice: 'Blog was successfully created!' }
@@ -84,7 +86,7 @@ class BlogsController < ApplicationController
       end
 
     def blog_params
-        params.require(:blog).permit(:title, :caption, :description, :email)
+        params.require(:blog).permit(:title, :caption, :description, :image)
       end
 
 end
