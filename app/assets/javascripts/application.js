@@ -61,11 +61,8 @@ $(document).ready(function(){
           $("#"+blogID).html("Live");
         }
         else{
+          $("#"+blogID).removeClass("live_button").addClass("archive_button");
           $("#"+blogID).html("Archive");
-          $(".archive_button").show();
-
-          // $("#"+blogID, ".edit_button").hide();
-
         }
       }
     });
@@ -86,14 +83,12 @@ $(document).ready(function(){
       setTimeout(function(){
         fileUpload.onload = function (e){
         return function (e){
-         image.src = e.target.result
-         if(image.width < 400 || image.height < 160){
-            var error_message = "Upload a photo with a 535x350 or bigger dimension.";
-            $('.message').html(error_message);
-            showErrorPopOut();  
-            console.log("if");
+          image.src = e.target.result
+          if(image.width < 200 || image.height < 200){
+            alert("Upload a photo with a 200x200 or bigger dimension."); 
           }
           else{
+            console.log(e.target.result);
             $('#image_base64_holder').attr("value",e.target.result);
             $(".image_holder").css("background-image", "url("+image.src+")");
           }
