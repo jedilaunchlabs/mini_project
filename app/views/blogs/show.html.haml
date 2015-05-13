@@ -6,11 +6,15 @@
       %th Title
       %th Caption
       %th Description
+      %th Category
       %th User
-      %th{:colspan => "4"}
+      %th{:colspan => "5"}
   %tbody
     %tr
       %td= @blog.title
       %td= @blog.caption
       %td= @blog.description
+      %td
+        - @blog.categories.each do |category|
+          = category.name
       %td= @blog.user.email
