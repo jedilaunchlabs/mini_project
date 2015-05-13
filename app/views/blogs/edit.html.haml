@@ -17,6 +17,14 @@
       = f.text_field :caption, placeholder: "Content"
     .field 
       = f.text_area :description, placeholder: "Description"
+
+    %select.js-example-basic-multiple{:name => "categories[]", :multiple => "multiple"}
+      - @categories.each do |category|
+        - if @blog.categories.include?(category)
+          %option{:value => "#{category.id}", :selected => true}= category.name 
+        - else
+          %option{:value => "#{category.id}"}= category.name 
+
     .actions 
       = f.submit "Update"
     
