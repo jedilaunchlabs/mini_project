@@ -71,9 +71,37 @@ $(document).ready(function(){
     });
   });
 
+  //select2
   $(".js-example-basic-multiple").select2({
     placeholder: "Choose category",
     allowClear: true
+  });
+
+  // convert image to base 64
+  $('#image_upload').change(function(data) {
+    setTimeout(function(){
+      var fileUpload = new FileReader;
+      var file = document.getElementById("image_upload").files[0];
+      var image = new Image();
+      setTimeout(function(){
+        fileUpload.onload = function (e){
+        return function (e){
+         image.src = e.target.result
+         if(image.width < 400 || image.height < 160){
+            var error_message = "Upload a photo with a 535x350 or bigger dimension.";
+            $('.message').html(error_message);
+            showErrorPopOut();  
+            console.log("if");
+          }
+          else{
+            $('#image_base64_holder').attr("value",e.target.result);
+            $(".image_holder").css("background-image", "url("+image.src+")");
+          }
+        }
+      }(file);
+      fileUpload.readAsDataURL(file);
+      });
+    });
   });
 
 });
