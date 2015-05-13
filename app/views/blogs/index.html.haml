@@ -10,22 +10,24 @@
         %th Title
         %th Caption
         %th Description
+        %th Category
         %th User
-        %th{:colspan => "4"}
+        %th{:colspan => "5"}
     %tbody
       - @blogs.each do |blog|
         %tr
           %td= blog.title
           %td= blog.caption
           %td= blog.description
+          %td
+            - blog.categories.each do |category|
+              = category.name
           %td= blog.user.email
 
-          - if blog.is_draft?
+          - if blog.is_draft == true
             %td= button_to 'Edit', edit_blog_path(blog), :method => "get", :class => "edit_button"
             %td
-              - if blog.is_draft?
-                %button{id: "#{blog.id}", :class => "live_button"} Live
-
+              %button{id: "#{blog.id}", :class => "live_button"} Live
           - unless blog.is_draft?
             %td
               - if blog.is_archived?
