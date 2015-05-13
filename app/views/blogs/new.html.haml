@@ -16,10 +16,8 @@
   .field 
     = f.text_area :description, placeholder: "Description"
   .field
-    %select.js-example-basic-multiple{:multiple => "multiple"}
-      %option{:value => "PN"} Paintings
-      %option{:value => "PT"} Photography
-      %option{:value => "FD"} Food      
-
+    %select.js-example-basic-multiple{:name => "categories[]", :multiple => "multiple"}
+      - @categories.each do |category|
+        %option{:value => "#{category.id}"}= category.name      
   .actions 
     = f.submit "Create"
