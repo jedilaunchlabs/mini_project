@@ -18,7 +18,7 @@
 
 $(document).ready(function(){
 
-  $(".archive_button").click(function(){
+  $("body").on("click", ".archive_button", function(){
     var blogID = $(this).attr("id");
     $.ajax({      
       url:"/ajax/blogs/" + blogID + "/archive",
@@ -43,7 +43,7 @@ $(document).ready(function(){
   });
 
 
-  $(".live_button").click(function(){
+  $("body").on("click", ".live_button", function(){
     var blogID = $(this).attr("id");
     $.ajax({      
       url:"/ajax/blogs/" + blogID + "/live",
@@ -57,12 +57,9 @@ $(document).ready(function(){
           
       },
       success:function(data){
-        if(data.is_draft == true){
-          $("#"+blogID).html("Live");
-        }
-        else{
-          $("#"+blogID).removeClass("live_button").addClass("archive_button");
-          $("#"+blogID).html("Archive");
+        if(data.is_draft == false){
+          $("#edit"+blogID).parent().parent().remove();
+          $("#"+blogID).removeClass("live_button").addClass("archive_button").html("Archive");
         }
       }
     });
@@ -74,24 +71,21 @@ $(document).ready(function(){
     allowClear: true
   });
 
-  // convert image to base 64
-  $('#image_upload').change(function(data) {
+  $("#buttonUploader").bind("click", function () {
+    $("#imageUploader").trigger("click");
+  });
+
+  $('#imageUploader').change(function(data) {
     setTimeout(function(){
       var fileUpload = new FileReader;
-      var file = document.getElementById("image_upload").files[0];
+      var file = document.getElementById("imageUploader").files[0];
       var image = new Image();
       setTimeout(function(){
         fileUpload.onload = function (e){
         return function (e){
           image.src = e.target.result
-          if(image.width < 200 || image.height < 200){
-            alert("Upload a photo with a 200x200 or bigger dimension."); 
-          }
-          else{
-            console.log(e.target.result);
-            $('#image_base64_holder').attr("value",e.target.result);
-            $(".image_holder").css("background-image", "url("+image.src+")");
-          }
+          $("#base64Image").val(e.target.result);
+          $("#displayImage").css("background-image", "url(" + image.src + ")");
         }
       }(file);
       fileUpload.readAsDataURL(file);
