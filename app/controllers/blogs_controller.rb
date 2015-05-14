@@ -65,10 +65,21 @@ class BlogsController < ApplicationController
   end
 
 
-  def update    
+  def update        
+    image = params[:image]
       
     respond_to do |format| 
       if @blog.update_attributes(blog_params) 
+
+        if image.present?
+          image64 = image.split(",").second
+          io = BlogImageString.new(Base64.decode64(image64))
+          io.original_filename = "foobar.png"
+          io.content_type = "image/png"
+          @blog.image = io
+          @blog.save
+        end
+
         if params[:categories].present?
           @blogs_category = BlogsCategory.select("blog_id").where("blog_id = ? AND category_id NOT IN (?)", @blog.id, params[:categories])
 
