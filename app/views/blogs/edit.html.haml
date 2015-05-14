@@ -5,12 +5,12 @@
 
   %h1 Edit Blog
 
-
-  %div{id: "displayImage", style: "height:200px;width:200px"}
+  %div{id: "displayImage", style: "height:200px;width:200px;background-image:url(#{@blog.image_url})"}
   %input{id: "imageUploader", type: :file, style: "display: none"}
   %button{id: "buttonUploader"} Upload Image
 
   = form_for (@blog) do |f|
+
     - if @blog.errors.any?
       #error_explanation
         %h3
@@ -19,7 +19,6 @@
         %ul
           - @blog.errors.full_messages.each do |message|
             %li= message
-
 
     %textarea{name: "image", id: "base64Image", style: "display: none"}
 
