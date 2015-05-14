@@ -12,9 +12,9 @@
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %> </br>
     <% end %>	
 
-
-	<%= render 'layouts/header' %>
-
+  <% if user_signed_in? %>
+	  <%= render 'layouts/header' %>
+  <% end %>
 
 	<%= yield %>
 

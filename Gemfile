@@ -12,6 +12,7 @@ gem 'carrierwave',    '0.8.0'
 gem 'mini_magick',    '3.7.0'
 gem 'fog'
 gem 'rmagick',        '2.13.2'
+gem 'select2-rails',  '3.5.9.3'
 
 
 # Use SCSS for stylesheets

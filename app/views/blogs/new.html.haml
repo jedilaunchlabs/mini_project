@@ -1,4 +1,12 @@
+%br/
+= button_to 'My Blogs', blogs_path, :method => "get"
+
 %h1 New Blog
+
+
+%div{id: "displayImage", style: "height:200px;width:200px"}
+%input{id: "imageUploader", type: :file, style: "display: none"}
+%button{id: "buttonUploader"} Upload Image
 
 = form_for (@blog) do |f|
   - if @blog.errors.any?
@@ -9,11 +17,18 @@
       %ul
         - @blog.errors.full_messages.each do |message|
           %li= message
+
+  %textarea{name: "image", id: "base64Image", style: "display: none"}
+
   .field 
     = f.text_field :title, placeholder: "Title"
   .field 
     = f.text_field :caption, placeholder: "Content"
   .field 
-    = f.text_field :description, placeholder: "Description"
+    = f.text_area :description, placeholder: "Description"
+  .field
+    %select.js-example-basic-multiple{:name => "categories[]", :multiple => "multiple"}
+      - @categories.each do |category|
+        %option{:value => "#{category.id}"}= category.name
   .actions 
     = f.submit "Create"
