@@ -1,6 +1,9 @@
 - if user_signed_in?
   %br/
   = button_to 'Create Blog', new_blog_path, :method => "get"
+  
+  %br/
+  = button_to 'My Blogs', blogs_path, :method => "get"
 
 - unless @blogs.empty?
   %h2 Live Blogs
