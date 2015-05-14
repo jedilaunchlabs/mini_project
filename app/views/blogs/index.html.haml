@@ -24,11 +24,11 @@
               = category.name
           %td= blog.user.email
 
-          - if blog.is_draft == true
-            %td= button_to 'Edit', edit_blog_path(blog), :method => "get", :class => "edit_button"
+          - if blog.is_draft?
+            %td= button_to 'Edit', edit_blog_path(blog), method: "get", id: "edit#{blog.id}"
             %td
               %button{id: "#{blog.id}", :class => "live_button"} Live
-          - unless blog.is_draft?
+          - else
             %td
               - if blog.is_archived?
                 %button{id: "#{blog.id}", :class => "archive_button"} Archived
@@ -38,4 +38,3 @@
   = will_paginate
 - else
   %p Blog list is empty.
-
