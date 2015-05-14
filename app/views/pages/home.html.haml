@@ -1,9 +1,11 @@
 - if user_signed_in?
   %br/
   = button_to 'Create Blog', new_blog_path, :method => "get"
-  
+    
   %br/
   = button_to 'My Blogs', blogs_path, :method => "get"
+-else  
+  #{link_to "Register", new_user_registration_path} or #{link_to "Sign In", new_user_session_path}
 
 - unless @blogs.empty?
   %h2 Live Blogs
