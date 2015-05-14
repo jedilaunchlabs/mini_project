@@ -70,20 +70,20 @@ class BlogsController < ApplicationController
     respond_to do |format| 
       if @blog.update_attributes(blog_params) 
         if params[:categories].present?
-          @blog_category = BlogsCategory.select("blog_id").where("blog_id = ? AND category_id NOT IN (?)", @blog.id, params[:categories])
+          @blogs_category = BlogsCategory.select("blog_id").where("blog_id = ? AND category_id NOT IN (?)", @blog.id, params[:categories])
 
-          if @blog_category.present?
-            @blog_category.delete_all
+          if @blogs_category.present?
+            @blogs_category.delete_all
           end
 
           params[:categories].each do |category|
-            @blog_category = BlogsCategory.select("blog_id").where("blog_id = ? AND category_id IN (?)", @blog.id, category.to_i)
-            unless @blog_category.present?
+            @blogs_category = BlogsCategory.select("blog_id").where("blog_id = ? AND category_id IN (?)", @blog.id, category.to_i)
+            unless @blogs_category.present?
               @blog_category = BlogsCategory.create({ blog_id: @blog.id, category_id: category.to_i })
             end
           end
         else
-          @blog_category = BlogsCategory.select("blog_id").where("blog_id = ?", @blog.id).delete_all
+          @blogs_category = BlogsCategory.select("blog_id").where("blog_id = ?", @blog.id).delete_all
         end
         
         format.html { redirect_to blogs_path, notice: 'Blog was successfully updated!' }
