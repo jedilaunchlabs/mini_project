@@ -3,6 +3,3 @@
  #{button_to "Sign out", destroy_user_session_path, :method => :delete }
 - else
  #{link_to "Register", new_user_registration_path} or #{link_to "Sign In", new_user_session_path}
-
-%br/
-= button_to 'My Blogs', blogs_path, :method => "get"
