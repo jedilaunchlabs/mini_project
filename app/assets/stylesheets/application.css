@@ -15,4 +15,10 @@
  *= require select2
  */
 
+ #displayImage{
+  background-size: 100% auto;
+  background-position: auto;
+  background-repeat: no-repeat;
+ }
+
  
