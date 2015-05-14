@@ -1,7 +1,11 @@
+%br/
+= button_to 'My Blogs', blogs_path, :method => "get"
+
 %h2 Blog
 
+
 .picture
-  = image_tag @blog.image_url(:thumb).to_s
+  = image_tag @blog.image_url.to_s
 
 %table
   %thead
